@@ -1,0 +1,18 @@
+# The sandbox image for autonomous product runs.
+#
+# WHY THIS EXISTS. Every shell call is a fresh `--rm` container, so anything the
+# agent installs into the image is gone by its next turn. `corepack enable` is
+# the obvious casualty: pnpm would work once and then not exist. Tooling the
+# agent is expected to use has to be IN the image, not installed by it.
+#
+# openssl is here because Prisma warns loudly without it on bookworm-slim.
+FROM docker.io/library/node:22-bookworm-slim
+
+RUN apt-get update -y \
+ && apt-get install -y --no-install-recommends openssl ca-certificates git curl \
+ && rm -rf /var/lib/apt/lists/*
+
+# `corepack prepare` only records a version; the binary is still fetched on
+# first use, so every one-shot container would download pnpm again over the
+# network. Installing it globally bakes it into the layer for real.
+RUN npm install -g pnpm@latest && pnpm --version

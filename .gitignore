@@ -1,0 +1,57 @@
+node_modules/
+.env
+# THE OPERATIONAL RECORD IS EVIDENCE TOO, AND UNTIL NOW THE RULE THREW IT AWAY.
+#
+# out/ holds the turn-by-turn run logs, the ladder's own log, each directive
+# watcher's delivery record and the held-out verifier's JSON results. logs/ holds
+# the operator-side transcripts. None of it is reproducible: re-running a cell
+# produces a different run, not the same log.
+#
+# The comment that stood here said all of that and then ignored `*.log` anyway,
+# so 133 of the 142 files in out/ were untracked while the text above them
+# argued they were evidence. That is the prose-vs-code drift this project keeps
+# finding in its own harness, sitting in its own .gitignore.
+#
+# CREDENTIAL CHECK, actually run rather than asserted (2026-09-08):
+# scanned out/ and logs/ for sk_/pk_/whsec_, PEM blocks, bearer tokens and
+# postgres URLs carrying a password. One hit, excluded below. The launcher
+# writes the generated Postgres password into the workspace .env and never
+# echoes it. Re-run the scan before adding new log directories - a leaked
+# secret in git history is not undone by a later commit.
+*.log
+!out/**/*.log
+!logs/**/*.log
+# The one hit: a scrypt salt:hash for the relay's synthetic test user. A hash,
+# not a usable credential, and excluded anyway because the standard above is
+# only worth anything if it is enforced when it costs something.
+out/serve_M_k1.log
+# THE RUNS ARE THE RESULTS, so their source is tracked.
+#
+# This was a blanket `workspace/` ignore, which threw away every artifact any run
+# has ever produced in order to avoid node_modules. 120+ run directories, zero
+# tracked files - including M_k1's complete Next.js app, the best thing any
+# autonomous run has built. Under disk pressure I have been deleting from these
+# directories all night with nothing but the filesystem standing between a result
+# and its loss.
+#
+# Source only: 16MB across 1,766 files. What stays ignored is what is
+# reproducible from that source, plus anything holding a credential.
+workspace/**/node_modules/
+workspace/**/.next/
+workspace/**/.pnpm-store/
+workspace/**/generated/
+workspace/**/dist/
+# Secrets, never. workspace/M_e1/relay/.env.local holds Stripe test keys, and
+# every run's .env carries a generated Postgres password.
+workspace/**/.env
+workspace/**/.env.*
+
+# Run artifacts are committed, but per-run auth state is not: these are
+# localhost session cookies/ids from the relay app the agent builds. Nothing
+# in src/ or probe/ reads them, so excluding them costs no analytic evidence.
+workspace/**/relay/tmp-state/
+workspace/**/*cookies*.txt
+
+# published artifacts: raw run data ships under CC BY 4.0
+!data/
+!data/*.csv.gz

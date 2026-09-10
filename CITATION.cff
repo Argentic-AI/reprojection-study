@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use this software or data, please cite it as below."
+title: "Context Re-projection: rebuilding an agent's context from durable state versus letting a transcript accumulate"
+abstract: >-
+  A controlled study of two context strategies for long-horizon coding agents.
+  One arm re-projects the prompt from durable state at every task boundary; the
+  control lets the transcript accumulate and truncates from the front at a
+  ceiling. Includes the harness, the arms, the task sets, the evaluation code,
+  and the raw run data for every cell.
+type: software
+authors:
+  - family-names: Luo
+    given-names: Neil
+    affiliation: Organisely
+version: "1.0.0"
+date-released: "2026-09-10"
+license: Apache-2.0
+repository-code: "https://github.com/Organisely/reprojection-study"
+url: "https://github.com/Organisely/reprojection-study"
+keywords:
+  - llm-agents
+  - long-horizon
+  - context-management
+  - state-tracking
+  - agent-evaluation

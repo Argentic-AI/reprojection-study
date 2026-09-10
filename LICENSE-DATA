@@ -1,0 +1,29 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+Copyright 2026 Organisely
+
+WHAT THIS COVERS
+  data/                 raw run data exported from the study journal
+  src/taskset.ts        task definitions
+  src/propagation.ts    the interjection schedules and scoring predicates
+  src/constraint.ts     the constraint corpus
+  research/             the limitations record and night logs
+
+Everything else in this repository is licensed under the Apache License,
+Version 2.0 (see LICENSE). Where a file could be read as both, the Apache
+licence governs the executable code and CC BY governs the content.
+
+YOU ARE FREE TO
+  Share  - copy and redistribute in any medium or format
+  Adapt  - remix, transform, and build upon the material, for any purpose,
+           including commercially
+
+UNDER ONE CONDITION
+  Attribution - you must give appropriate credit, provide a link to the
+  licence, and indicate if changes were made.
+
+Full licence text: https://creativecommons.org/licenses/by/4.0/legalcode
+Human-readable summary: https://creativecommons.org/licenses/by/4.0/
+
+Attribution is a licence term here, not a request. If you use these tasks or
+this run data, cite the work (see CITATION.cff).
