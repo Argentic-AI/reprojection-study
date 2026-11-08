@@ -53,10 +53,17 @@ cp .env.example .env      # add a key; the study ran on GLM-4.7-Flash / GLM-5.3-
 STUDY_TASK_SET=site ./go.sh power   # the analysis
 ```
 
-The raw rows behind every figure ship in `data/` (gzipped CSV). The analysis
-scripts read from Postgres and this repository has no loader for the CSVs, so
-reproducing a figure from `data/` means loading the tables into the schema in
-`sql/` yourself.
+`data/` holds the journal as gzipped CSV. The analysis scripts read from
+Postgres and there is no loader, so load the tables into the schema in `sql/`
+yourself. Token counts, tasks created and closed, and the accumulation sweep
+(`probe/accumulation.ts`) recompute from it. The grounded-output figures
+(`probe/attributed_ground.ts`, `probe/power.ts`) do not: they grade claims
+against each run's `workspace/` files, which are not in the export
+(`created_artifacts.detail` is cut at 300 characters). Those figures, and the
+p-values built on them, are the study's own published results and cannot be
+recomputed from `data/`. A rerun of the accumulation sweep on the export gives
+different run counts from the table below (n=20 at the 30k cut, not 15), with the
+same pattern: the decline shows at 30k and not at 25k.
 
 ## Read the limitations first
 
