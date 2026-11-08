@@ -78,10 +78,13 @@ That is the point of the repository: **instrumentation written today is re-run
 over runs recorded weeks ago**, and it regularly changes what those runs meant.
 Arms and metrics are disposable; the journal is the asset.
 
-Current journal: 108 runs across 5 task sets, 6 arms and 4 models, 16,836
-steps, 5,356 decisions. Of those 5,356 decisions, **zero** have ever been
-superseded — the invalidation path exists in the schema and in `assemble()`,
-and no tool has ever been able to reach it.
+The journal exported in `data/` holds 145 runs (119 finished, 25 failed, 1 still
+running at export) across 9 task sets and 10 arms, with 43,109 steps and 6,406
+decisions. Most runs used GLM-4.7-Flash or GLM-5.3-Flash; 7 used another
+provider's endpoint. 50 of the 6,406 decisions are marked superseded, all after a
+`supersede` tool was added. In an earlier export (5,356 decisions) the count was
+**zero**: the invalidation path existed in the schema and in `assemble()`, and no
+tool could reach it.
 
 ## The question
 
