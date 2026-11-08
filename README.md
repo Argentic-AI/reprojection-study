@@ -1,5 +1,12 @@
 # Context Re-projection
 
+> **Superseded: a small early experiment (September 2026).** This is an early
+> Argentic study of one question: does rebuilding an agent's context from stored
+> state beat letting a transcript pile up? It ran a research harness on
+> GLM-4.7-Flash and GLM-5.3-Flash, nine runs per cell. It is not how the Argentic
+> engine works today, and none of these numbers describe the engine. Start with
+> `research/STUDY_CAVEATS.md` before trusting any figure.
+
 Does rebuilding a long-horizon coding agent's context from durable state at each
 task boundary beat letting the transcript accumulate?
 
@@ -17,8 +24,8 @@ accumulate a transcript and truncate from the front at a ceiling.
   year         = {2026},
   version      = {1.0.0},
   license      = {Apache-2.0},
-  organization = {Organisely},
-  url          = {https://github.com/Organisely/reprojection-study},
+  organization = {Argentic},
+  url          = {https://github.com/Argentic-AI/reprojection-study},
   urldate      = {2026-09-10}
 }
 ```
@@ -46,7 +53,10 @@ cp .env.example .env      # add a key; the study ran on GLM-4.7-Flash / GLM-5.3-
 STUDY_TASK_SET=site ./go.sh power   # the analysis
 ```
 
-Every figure regenerates from `data/` without executing a cell.
+The raw rows behind every figure ship in `data/` (gzipped CSV). The analysis
+scripts read from Postgres and this repository has no loader for the CSVs, so
+reproducing a figure from `data/` means loading the tables into the schema in
+`sql/` yourself.
 
 ## Read the limitations first
 
@@ -57,7 +67,7 @@ whether to trust the headline, start there.
 
 ---
 
-# agent-lab
+# The harness
 
 A harness for testing **agent context strategies as arms** against a shared
 journal, on real work.
@@ -457,8 +467,7 @@ last of all four arms on grounded-per-file. Its only lead anywhere is partial
 revision propagation, 7/9 against B's 5/9, which is p=0.62. It is retained as
 the base for the memory experiment on an explicitly **structural** ground —
 invalidation is a property of a retrieval index and B has none — and that choice
-is recorded in `../memory/PRE_REGISTRATION.md` as being made *against* the
-measured evidence rather than implied by it.
+was made *against* the measured evidence rather than implied by it.
 
 **A does not survive — on cost and on output, not on revision.** A third of B's
 grounded output on `site` and 26% less on `operate`; 3.1× the token cost on

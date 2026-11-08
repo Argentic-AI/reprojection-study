@@ -6,7 +6,7 @@
  * `boundary_series`, `params_visible` and `outcome_tags` were all written and
  * none were reported. That is precisely the defect the rerun was built to fix —
  * `superseded_by` was read by four call sites and written by none, and
- * organisely's `forgetting.ts` is fully tested with zero callers. Recording a
+ * another system's forgetting module was fully tested with zero callers. Recording a
  * metric nothing reads is the same failure with the ends swapped, and it would
  * have been discovered only when someone went looking for a result.
  *

@@ -11,12 +11,12 @@ type: software
 authors:
   - family-names: Luo
     given-names: Neil
-    affiliation: Organisely
+    affiliation: Argentic
 version: "1.0.0"
 date-released: "2026-09-10"
 license: Apache-2.0
-repository-code: "https://github.com/Organisely/reprojection-study"
-url: "https://github.com/Organisely/reprojection-study"
+repository-code: "https://github.com/Argentic-AI/reprojection-study"
+url: "https://github.com/Argentic-AI/reprojection-study"
 keywords:
   - llm-agents
   - long-horizon

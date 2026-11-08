@@ -522,7 +522,7 @@ two of them stale, all three re-rendered on every wake for the rest of the run.
 The agent re-reads its own contradicted history every turn, and the contradiction
 is what the floor is made of.
 
-NEXT EXPERIMENT, and experiments/memory/PRE_REGISTRATION.md already designs it.
+NEXT EXPERIMENT, which this repository does not contain.
 A memory graph with bi-temporal invalidation is the direct answer: an edge that
 is superseded gets an end-time rather than being deleted, so the rendered state
 is the current slice rather than the whole history. The arm to beat is not A - it

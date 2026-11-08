@@ -204,16 +204,16 @@ the first is evidenced.
 
 ## 6. By its own principle, arm M is now in the regime that needs eviction
 
-From an architecture comparison against a second, independently built system
-(organisely's backend, ~48.7k lines), judged with file:line evidence on both
-sides. The comparison produced one principle that indicts both:
+From an architecture comparison against a second, independently built system,
+judged with file:line evidence on both sides. The comparison produced one
+principle that indicts both:
 
 > Retrieval is correct when |durable state| >> |window|.
 > Projection is correct when |durable state| < |window| and completeness beats
 > relevance.
 
-**Both systems violate it, in the same direction.** organisely ranks and
-budget-caps a durable state that is tiny (a 1200-token seed, <=8 tools, 3
+**Both systems violate it, in the same direction.** The other system ranks and
+budget-caps a stored state that is tiny (a 1200-token seed, <=8 tools, 3
 capabilities) where projecting would be cheaper and deterministic. And arm M
 projects a durable state measured growing at **209.6 tokens/turn to ~41,594 by
 turn 200** — 173% of the cap its own control is held to (caveat 1).
@@ -233,12 +233,10 @@ plan, caveat 1), or pre-register a cap from the growth curve for a FUTURE study
 and run the ladder. Not: pick a number today.
 
 **One thing arm M does better, verified in both codebases.** `assemble.ts`
-reads no clock and its render order is a module constant. organisely's
-`ContextBudgetManager.ageDecay()` calls `Date.now()` with a 1-hour half-life,
-and its resume path deserialises a checkpointed budget whose timestamps were
-written hours earlier — so a resumed run evicts a *different* set than the
-original would have, and recovery silently changes the context. Determinism of
-assembly is worth more than it looks, and it is a real advantage to claim.
+reads no clock and its render order is a module constant. The other system's
+eviction scoring decays by wall-clock age, so the same stored state evicts a
+*different* set when it is rebuilt hours later. Determinism of assembly is worth
+more than it looks, and it is a real advantage to claim.
 
 ## 7. Pre-flight gating cannot predict cell stability on this endpoint
 
